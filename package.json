@@ -14,17 +14,19 @@
     "body-parser": "*",
     "connect-flash": "*",
     "cookie-parser": "^1.4.1",
+    "ejs": "*",
     "express": "*",
     "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "fcm-push": "*",
     "mongodb": "*",
     "mongoose": "*",
+    "mongoose-unique-validator": "^1.0.6",
     "passport": "*",
     "passport-http": "*",
-    "passport-local": "*",
-	"fcm-push": "*",
-	"ejs": "*"
+	"xml2js": "*",
+    "passport-local": "*"
   }
 }

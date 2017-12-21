@@ -6,7 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 
 //*********** Get All User ***********
-router.get('/register', function (req, res, next) {
+router.get('/registered', function (req, res, next) {
     var data = {
         "Data": ""
     };

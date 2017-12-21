@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userlist = require('../models/user');
 const rpmlist = require('../models/rpm');
+const dtclist = require('../models/dtc');
 var FCM = require('fcm-push');
 
 function ensureAuthenticated(req,res, next){
@@ -38,6 +39,7 @@ router.get('/userDashboard',ensureAuthenticated, function (req, res, next) {
         data = row[0];
         var currentdt=new Date();
         var minutagodt=new Date(currentdt - 60000);
+        req.session.currentuser=req.query.id;
         
         if(data.isActive==true && (data.isActiveAt>minutagodt && data.isActiveAt<currentdt))
         {
@@ -47,11 +49,20 @@ router.get('/userDashboard',ensureAuthenticated, function (req, res, next) {
         {
             data.isActive=false;
         }
-        console.log(data.isActive);
         res.render('userDashboard', { UserModel: data,user:req.user });
-        
     })
     //res.render('userlist');
+});
+router.get('/diagnostic',ensureAuthenticated, function (req, res, next) {
+    userlist.find({username:req.session.currentuser}).then(function (rows) {
+        console.log(rows[0]._id);
+        var data=dtclist.find({ user: rows[0]._id }).then(function (data) {
+            
+            console.log(data);
+            res.render('diagnostic', { UserModel: data,user:req.user });
+        });
+        
+    });
 });
 
 router.get('/rpmlist',ensureAuthenticated, function (req, res, next) {

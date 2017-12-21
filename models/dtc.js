@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 //create openxc Schema & model
 const dtcSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
     code: {
         type: String,
         required : [true,'code field is required']

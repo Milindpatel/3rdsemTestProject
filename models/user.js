@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
+var mongooseUniqueValidator = require('mongoose-unique-validator');
 
 //create openxc Schema & model
 const openxcSchema = new Schema({
@@ -46,6 +47,7 @@ const openxcSchema = new Schema({
 
 });
 
+openxcSchema.plugin(mongooseUniqueValidator);
 
 // const openxc = mongoose.model('openxc',openxcSchema);
 
